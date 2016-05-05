@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Amazeriffic!</title>
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Amazeriffic!</h1>
+            <nav>
+                <a href="#">Sign Up!</a> |
+                <a href="#">FAQ</a> |
+                <a href="#">Support</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="container">
+            <div id="tab">
+                <ul class="ui-tab" role="tablist">
+                    <li role="tab">
+                        <a href="#tab1" data-bind="click: showBlock, css: { 'active': selected() == 'tab1' || init() == 1 }">Newest</a>
+                    </li>
+                    <li role="tab">
+                        <a href="#tab2" data-bind="click: showBlock, css: { 'active': selected() == 'tab2' }">Oldest</a>
+                    </li>
+                    <li role="tab">
+                        <a href="#tab3" data-bind="click: showBlock, css: { 'active': selected() == 'tab3' }">Tags</a>
+                    </li>
+                    <li role="tab">
+                        <a href="#tab4" data-bind="click: showBlock, css: { 'active': selected() == 'tab4' }">Add</a>
+                    </li>
+                </ul>
+
+                <div class="ui-tabpanel" role="tabpanel" data-bind="visible: selected() === 'tab1' || init() === 1">
+                    <ul data-bind="foreach: newest">
+                        <li data-bind="text: $data"></li>
+                    </ul>
+                </div>
+
+                <div class="ui-tabpanel" role="tabpanel" data-bind="visible: selected() === 'tab2'">
+                    <ul data-bind="foreach: oldest">
+                        <li data-bind="text: $data"></li>
+                    </ul>
+                </div>
+
+                <div class="ui-tabpanel" role="tabpanel" data-bind="visible: selected() === 'tab3'">
+                    <div data-bind="foreach: tagsArr">
+                        <h3 data-bind="text: name"></h3>
+                        <ul data-bind="foreach: toDos">
+                            <li data-bind="text: $data"></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ui-tabpanel" role="tabpanel" data-bind="visible: selected() === 'tab4'">
+                    <form data-bind="submit: addTag">
+                        <p>Description: </p>
+                        <p><input data-bind='value: desc, valueUpdate: "afterkeydown"' /></p>
+                        <p>Tags: </p>
+                        <p><input data-bind='value: tg, valueUpdate: "afterkeydown"' /></p>
+                        <p><button type="submit">Add</button></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="contact">
+                <h5>Contact Us</h5>
+                <p>Amazeriffic!</p>
+                <p>555 Fiftieth Street</p>
+                <p>Asheville, NC 28801</p>
+            </div>
+            <div class="sitemap">
+                <h5>Sitemap</h5>
+                <ul>
+                    <div class="left">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </div>
+                    <div class="right">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src='knockout-3.4.0.js'></script>
+    <script src="javascripts/app.js"></script>
+</body>
+
+</html>
